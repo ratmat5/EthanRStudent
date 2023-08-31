@@ -4,7 +4,7 @@ comments: false
 layout: post
 title: Calculator 
 description: Something used for making mathematical calculations, in particular a small electronic device with a keyboard and a visual display.
-type: plans
+type: hacks
 courses: { csse: {week: 0}, csp: {week: 2, categories: [4.A]}, csa: {week: 0} }
 categories: [C1.4]
 ---
@@ -19,8 +19,6 @@ Hack 3: Implement 1 number operation (ie SQRT)
 <!-- 
 HTML implementation of the calculator. 
 -->
-
-{% include nav_home.html %}
 
 <!-- 
     Style and Action are aligned with HRML class definitions
