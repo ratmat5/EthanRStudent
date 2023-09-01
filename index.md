@@ -8,7 +8,7 @@ title: Student Blog
 Hi :D
 ![Alt text](images/IMG_0946.JPG)
 ## More About Me
-I Love Basketball
+>I Love Basketball
 ![Alt text](images/referee-omar.gif)
 ![Alt text](<images/download (1).jpeg>)
 ## Overview of Hacks, Study and Tangibles
