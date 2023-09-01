@@ -4,7 +4,7 @@ comments: false
 layout: post
 title: Calculator 
 description: Something used for making mathematical calculations, in particular a small electronic device with a keyboard and a visual display.
-type: hacks
+type: tangibles
 courses: { csse: {week: 0}, csp: {week: 2, categories: [4.A]}, csa: {week: 0} }
 categories: [C1.4]
 ---
