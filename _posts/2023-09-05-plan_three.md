@@ -10,4 +10,15 @@ categories: [C1.4]
 ---
 
 ### Tuesday 
-- 
+- finish setting up all required python hacks
+- figure out how to implement python quiz
+
+### Wednesday
+- figure out how to fix csp page on github
+
+### Thursday
+- work on getting a linux hack
+
+### Friday
+- polish everything up
+- get java, python, and linux working
