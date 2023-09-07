@@ -15,9 +15,14 @@ categories: [C1.4]
 
 ### Wednesday
 - figure out how to fix csp page on github
+- review code in ChatGPT
+- Create a review ticket
+- work on hacks of JSOutput w/Jquery 
+- ask for feedback with peers around me
 
 ### Thursday
-- work on getting a linux hack
+- work on getting a linux and bash hack
+- get python tricks and python io hacks
 
 ### Friday
 - polish everything up

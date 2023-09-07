@@ -2,7 +2,7 @@
 toc: true
 comments: false
 layout: post
-title: Python Quiz
+title: Quiz
 description: Test your knowledge
 type: tangibles
 courses: { csse: {week: 0}, csp: {week: 2, categories: [4.A]}, csa: {week: 0} }
