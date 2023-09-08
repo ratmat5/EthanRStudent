@@ -17,52 +17,52 @@ categories: [C1.4]
             <th>Make</th>
             <th>Model</th>
             <th>Year</th>
-            <th>Color</th>
+            <th>Colorway</th>
             <th>Price</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Nike</td>
-            <td>Lebron 20 ASW</td>
+            <td>Dunk</td>
+            <td>2021</td>
+            <td>Panda</td>
+            <td>$110</td>
+        </tr>
+        <tr>
+            <td>Nike</td>
+            <td>Jordan 1</td>
             <td>2022</td>
-            <td>Blue</td>
-            <td>$210</td>
-        </tr>
-        <tr>
-            <td>Nike</td>
-            <td>Kyrie-7</td>
-            <td>2020</td>
-            <td>Bred</td>
-            <td>$120</td>
-        </tr>
-        <tr>
-            <td>Nike</td>
-            <td>Kobe 8 proto</td>
-            <td>2023</td>
-            <td>White</td>
+            <td>Lost and Found</td>
             <td>$180</td>
         </tr>
         <tr>
-            <td>Li-Ning</td>
-            <td>Way of Wade 8</td>
-            <td>2020</td>
-            <td>Beijing</td>
-            <td>$160</td>
+            <td>Nike</td>
+            <td>Kobe 6 Proto</td>
+            <td>2011</td>
+            <td>Grinch</td>
+            <td>$180</td>
         </tr>
         <tr>
-            <td>Adidas</td>
-            <td>D.O.N issue 4</td>
-            <td>2022</td>
-            <td>Purple</td>
-            <td>$120</td>
-        </tr>
-        <tr>
-            <td>Under Armour</td>
-            <td>Curry Flow 10</td>
-            <td>2022</td>
+            <td>Nike</td>
+            <td>Air Force 1</td>
+            <td>1997</td>
             <td>White</td>
-            <td>$160</td>
+            <td>$110</td>
+        </tr>
+        <tr>
+            <td>Nike</td>
+            <td>Jordan 1</td>
+            <td>1985</td>
+            <td>Chicago</td>
+            <td>$180</td>
+        </tr>
+        <tr>
+            <td>Nike</td>
+            <td>Jordan 1</td>
+            <td>2018</td>
+            <td>Off-White UNC</td>
+            <td>$190</td>
         </tr>
         <tr>
             <td>Nike</td>
@@ -72,11 +72,11 @@ categories: [C1.4]
             <td>$170</td>
         </tr>
         <tr>
-            <td>Adidas</td>
-            <td>Dame 7</td>
-            <td>2020</td>
-            <td>White</td>
-            <td>$140</td>
+            <td>Nike</td>
+            <td>Jordan 11</td>
+            <td>2018</td>
+            <td>Concord</td>
+            <td>$220</td>
         </tr>
     </tbody>
 </table>
