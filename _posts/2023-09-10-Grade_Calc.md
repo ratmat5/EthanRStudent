@@ -3,7 +3,7 @@ toc: true
 comments: true
 layout: post
 title: Grade Calculator
-description: Become one with your tools.  They could be more important than code, code, coding.
+description: Use this to calculate the score on all of your assingments
 type: hacks
 courses: { csse: {week: 0}, csp: {week: 3, categories: [4.A]}, csa: {week: 0} }
 categories: [C1.4]
