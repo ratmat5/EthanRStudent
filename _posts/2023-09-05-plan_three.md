@@ -25,5 +25,5 @@ categories: [C1.4]
 - get python tricks and python io hacks
 
 ### Friday
-- polish everything up
+- polish java and python hacks
 - get java, python, and linux working
