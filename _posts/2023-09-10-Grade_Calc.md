@@ -9,8 +9,6 @@ courses: { csse: {week: 0}, csp: {week: 3, categories: [4.A]}, csa: {week: 0} }
 categories: [C1.4]
 ---
 
-%%html
-
 <!-- Help Message -->
 <h3>Input scores, press tab to add each new number.</h3>
 <!-- Totals -->
