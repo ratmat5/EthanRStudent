@@ -2,7 +2,7 @@
 toc: true
 comments: true
 layout: post
-title: Tools Setup
+title: Test
 description: Become one with your tools.  They could be more important than code, code, coding.
 type: plans
 courses: { csse: {week: 0}, csp: {week: 0, categories: [4.A]}, csa: {week: 0} }
@@ -14,7 +14,7 @@ categories: [C1.4]
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maze Adventure</title>
+  <title>Travel Adventure</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,112 +23,57 @@ categories: [C1.4]
     #game {
       margin-top: 20px;
     }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <h1>Maze Adventure</h1>
+  <h1>Travel Adventure</h1>
   <div id="game">
-    <p>Welcome to the Maze Adventure Game!</p>
-    <p>Enter your name: <input type="text" id="playerName"></p>
-    <button onclick="startGame()">Start Game</button>
+    <p>Welcome to the Travel Adventure Game!</p>
+    <button onclick="startGame()">Start Journey</button>
   </div>
 
   <script>
+    const destinations = [
+      { name: "Beach", description: "Relax on the sandy beaches and enjoy the sun." },
+      { name: "Mountain", description: "Embark on a hiking adventure and explore breathtaking views." },
+      { name: "City", description: "Experience the vibrant culture and exciting nightlife of a bustling city." }
+    ];
+
     let player = {
       name: "",
-      health: 100,
-      position: { x: 0, y: 0 }
+      destinationIndex: -1
     };
 
-    let mazeSize = 5; // Size of the maze (5x5 grid)
-    let treasurePosition = { x: 0, y: 0 };
-    let trapPositions = [];
+    function startGame() {
+      const playerName = prompt("Enter your name:");
+      if (!playerName) return;
 
-    function generateMaze() {
-      treasurePosition = {
-        x: Math.floor(Math.random() * mazeSize),
-        y: Math.floor(Math.random() * mazeSize)
-      };
-
-      for (let i = 0; i < mazeSize; i++) {
-        trapPositions.push({
-          x: Math.floor(Math.random() * mazeSize),
-          y: Math.floor(Math.random() * mazeSize)
-        });
-      }
+      player.name = playerName;
+      player.destinationIndex = -1;
+      nextDestination();
     }
 
-    function startGame() {
-      const playerName = document.getElementById("playerName").value;
-      if (playerName.trim() === "") {
-        alert("Please enter your name.");
+    function nextDestination() {
+      player.destinationIndex++;
+      if (player.destinationIndex >= destinations.length) {
+        alert(`Congratulations, ${player.name}! You have completed your journey.`);
         return;
       }
 
-      player.name = playerName;
-      generateMaze();
-      renderGame();
-    }
+      const destination = destinations[player.destinationIndex];
+      const decision = confirm(`Welcome, ${player.name}! You have arrived at ${destination.name}. ${destination.description} Would you like to continue your journey?`);
 
-    function move(direction) {
-      switch (direction) {
-        case "up":
-          player.position.y++;
-          break;
-        case "down":
-          player.position.y--;
-          break;
-        case "left":
-          player.position.x--;
-          break;
-        case "right":
-          player.position.x++;
-          break;
+      if (decision) {
+        nextDestination();
+      } else {
+        alert(`Thank you for playing, ${player.name}! Your journey ends here.`);
       }
-
-      checkGameState();
-      renderGame();
-    }
-
-    function checkGameState() {
-      if (player.position.x === treasurePosition.x && player.position.y === treasurePosition.y) {
-        alert(`Congratulations, ${player.name}! You found the treasure and won the game!`);
-        resetGame();
-      }
-
-      for (const trap of trapPositions) {
-        if (player.position.x === trap.x && player.position.y === trap.y) {
-          const damage = Math.floor(Math.random() * 20) + 10;
-          player.health -= damage;
-          alert(`Oh no, you stepped on a trap and lost ${damage} health!`);
-          if (player.health <= 0) {
-            alert(`Game over, ${player.name}! Your health reached zero.`);
-            resetGame();
-          }
-          break;
-        }
-      }
-    }
-
-    function renderGame() {
-      const gameDiv = document.getElementById("game");
-      gameDiv.innerHTML = `
-        <p>Hello, ${player.name}! You are at position (${player.position.x}, ${player.position.y}).</p>
-        <p>Health: ${player.health}</p>
-        <p>Use the arrow keys to move:</p>
-        <button onclick="move('up')">Up</button>
-        <button onclick="move('down')">Down</button>
-        <button onclick="move('left')">Left</button>
-        <button onclick="move('right')">Right</button>
-      `;
-    }
-
-    function resetGame() {
-      player.health = 100;
-      player.position = { x: 0, y: 0 };
-      trapPositions = [];
-      generateMaze();
-      renderGame();
     }
   </script>
 </body>
