@@ -14,17 +14,23 @@ categories: [C1.4]
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Adventure</title>
+  <title>Language Guessing Quiz</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
     }
-    #game {
-      margin-top: 20px;
+    #question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #options {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
     }
     button {
-      margin: 10px;
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
@@ -32,115 +38,89 @@ categories: [C1.4]
   </style>
 </head>
 <body>
-  <h1>Travel Adventure</h1>
-  <div id="game">
-    <p>Welcome to the Travel Adventure Game!</p>
-    <button onclick="startGame()">Start Journey</button>
-  </div>
+  <h1>Language Guessing Quiz</h1>
+  <div id="question"></div>
+  <div id="options"></div>
+  <button id="nextButton" style="display: none;" onclick="nextQuestion()">Next Question</button>
+
+  <audio id="audio" controls style="display: none;"></audio>
 
   <script>
-    const destinations = [
-      { name: "Beach", description: "Relax on the sandy beaches and enjoy the sun." },
-      { name: "Mountain", description: "Embark on a hiking adventure and explore breathtaking views." },
-      { name: "City", description: "Experience the vibrant culture and exciting nightlife of a bustling city." }
+    const questions = [
+      {
+        audioSrc: "audio/english.mp3",
+        options: ["English", "Spanish", "French", "German"],
+        answer: "English"
+      },
+      {
+        audioSrc: "audio/spanish.mp3",
+        options: ["French", "Arabic", "Spanish", "Italian"],
+        answer: "Spanish"
+      },
+      {
+        audioSrc: "audio/french.mp3",
+        options: ["German", "Chinese", "Russian", "French"],
+        answer: "French"
+      },
+      {
+        audioSrc: "audio/german.mp3",
+        options: ["Japanese", "German", "Korean", "Dutch"],
+        answer: "German"
+      },
+      {
+        audioSrc: "audio/italian.mp3",
+        options: ["Italian", "Portuguese", "Swedish", "Turkish"],
+        answer: "Italian"
+      }
     ];
 
-    let player = {
-      name: "",
-      destinationIndex: -1,
-      health: 100,
-      money: 100
-    };
+    let currentQuestionIndex = 0;
+    let score = 0;
 
-    function startGame() {
-      const playerName = prompt("Enter your name:");
-      if (!playerName) return;
+    function displayQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      document.getElementById("question").textContent = "Guess the language:";
+      document.getElementById("audio").src = currentQuestion.audioSrc;
 
-      player.name = playerName;
-      player.destinationIndex = -1;
-      player.health = 100;
-      player.money = 100;
-      nextDestination();
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      currentQuestion.options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.onclick = function() { checkAnswer(option); };
+        optionsDiv.appendChild(button);
+      });
+
+      document.getElementById("nextButton").style.display = "none";
     }
 
-    function nextDestination() {
-      player.destinationIndex++;
-      if (player.destinationIndex >= destinations.length) {
-        alert(`Congratulations, ${player.name}! You have completed your journey.`);
-        return;
-      }
-
-      const destination = destinations[player.destinationIndex];
-      const decision = confirm(`Welcome, ${player.name}! You have arrived at ${destination.name}. ${destination.description} Would you like to explore?`);
-
-      if (decision) {
-        exploreDestination(destination);
+    function checkAnswer(selectedOption) {
+      const currentQuestion = questions[currentQuestionIndex];
+      if (selectedOption === currentQuestion.answer) {
+        alert("Correct!");
+        score++;
       } else {
-        alert(`Thank you for playing, ${player.name}! Your journey ends here.`);
+        alert("Incorrect! The correct answer is: " + currentQuestion.answer);
       }
-    }
 
-    function exploreDestination(destination) {
-      const choice = prompt(`You are at ${destination.name}. What would you like to do?\n1. Relax\n2. Go sightseeing\n3. Try local cuisine\n4. Return to main menu`);
-      if (!choice) return;
-
-      switch (choice) {
-        case "1":
-          relax();
-          break;
-        case "2":
-          goSightseeing();
-          break;
-        case "3":
-          tryLocalCuisine();
-          break;
-        case "4":
-          nextDestination();
-          break;
-        default:
-          alert("Invalid choice. Please enter a number between 1 and 4.");
-          exploreDestination(destination);
-      }
-    }
-
-    function relax() {
-      const relaxationLevel = Math.floor(Math.random() * 10) + 1;
-      player.health += relaxationLevel;
-      player.money -= 10;
-      alert(`You spent some time relaxing. Your health increased by ${relaxationLevel}, but you spent $10.`);
-      nextDestination();
-    }
-
-    function goSightseeing() {
-      const sightseeingCost = 20;
-      player.money -= sightseeingCost;
-      const sightseeingResult = Math.random();
-      if (sightseeingResult < 0.3) {
-        player.health -= 20;
-        alert("You had an accident while sightseeing and lost 20 health.");
-      } else if (sightseeingResult < 0.6) {
-        player.money += 30;
-        alert("You found a valuable artifact while sightseeing and gained $30.");
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
       } else {
-        player.health += 10;
-        alert("You enjoyed sightseeing and gained 10 health.");
+        endGame();
       }
-      nextDestination();
     }
 
-    function tryLocalCuisine() {
-      const cuisineCost = 15;
-      player.money -= cuisineCost;
-      const cuisineResult = Math.random();
-      if (cuisineResult < 0.4) {
-        player.health -= 10;
-        alert("You got food poisoning from the local cuisine and lost 10 health.");
-      } else {
-        player.health += 15;
-        alert("You enjoyed the delicious local cuisine and gained 15 health.");
-      }
-      nextDestination();
+    function endGame() {
+      alert("Quiz finished! Your score: " + score + "/" + questions.length);
+      document.getElementById("nextButton").style.display = "none";
     }
+
+    function nextQuestion() {
+      displayQuestion();
+    }
+
+    displayQuestion();
   </script>
 </body>
 </html>
