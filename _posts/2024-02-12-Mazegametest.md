@@ -14,113 +14,73 @@ categories: [C1.4]
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Language Guessing Quiz</title>
+  <title>Whack-a-Mole</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
     }
-    #question {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    #options {
+    .container {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      align-items: center;
+      height: 80vh;
     }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
+    .mole {
+      width: 100px;
+      height: 100px;
+      background-color: brown;
+      border-radius: 50%;
+      position: relative;
+    }
+    .mole-hole {
+      width: 120px;
+      height: 120px;
+      border: 2px solid black;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .score {
+      margin-top: 20px;
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
-  <h1>Language Guessing Quiz</h1>
-  <div id="question"></div>
-  <div id="options"></div>
-  <button id="nextButton" style="display: none;" onclick="nextQuestion()">Next Question</button>
-
-  <audio id="audio" controls style="display: none;"></audio>
+  <h1>Whack-a-Mole</h1>
+  <div class="container">
+    <div class="mole-hole" id="moleHole">
+      <div class="mole" id="mole"></div>
+    </div>
+  </div>
+  <div class="score" id="score">Score: 0</div>
 
   <script>
-    const questions = [
-      {
-        audioSrc: "audio/english.mp3",
-        options: ["English", "Spanish", "French", "German"],
-        answer: "English"
-      },
-      {
-        audioSrc: "audio/spanish.mp3",
-        options: ["French", "Arabic", "Spanish", "Italian"],
-        answer: "Spanish"
-      },
-      {
-        audioSrc: "audio/french.mp3",
-        options: ["German", "Chinese", "Russian", "French"],
-        answer: "French"
-      },
-      {
-        audioSrc: "audio/german.mp3",
-        options: ["Japanese", "German", "Korean", "Dutch"],
-        answer: "German"
-      },
-      {
-        audioSrc: "audio/italian.mp3",
-        options: ["Italian", "Portuguese", "Swedish", "Turkish"],
-        answer: "Italian"
-      }
-    ];
-
-    let currentQuestionIndex = 0;
     let score = 0;
+    const moleHole = document.getElementById('moleHole');
+    const mole = document.getElementById('mole');
+    const scoreDisplay = document.getElementById('score');
 
-    function displayQuestion() {
-      const currentQuestion = questions[currentQuestionIndex];
-      document.getElementById("question").textContent = "Guess the language:";
-      document.getElementById("audio").src = currentQuestion.audioSrc;
-
-      const optionsDiv = document.getElementById("options");
-      optionsDiv.innerHTML = "";
-      currentQuestion.options.forEach(option => {
-        const button = document.createElement("button");
-        button.textContent = option;
-        button.onclick = function() { checkAnswer(option); };
-        optionsDiv.appendChild(button);
-      });
-
-      document.getElementById("nextButton").style.display = "none";
-    }
-
-    function checkAnswer(selectedOption) {
-      const currentQuestion = questions[currentQuestionIndex];
-      if (selectedOption === currentQuestion.answer) {
-        alert("Correct!");
+    moleHole.addEventListener('click', () => {
+      if (mole.style.display !== 'none') {
         score++;
-      } else {
-        alert("Incorrect! The correct answer is: " + currentQuestion.answer);
+        scoreDisplay.textContent = `Score: ${score}`;
+        mole.style.display = 'none';
       }
+    });
 
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        displayQuestion();
-      } else {
-        endGame();
-      }
+    function moveMole() {
+      const randomX = Math.random() * (window.innerWidth - 100);
+      const randomY = Math.random() * (window.innerHeight - 100);
+      mole.style.left = `${randomX}px`;
+      mole.style.top = `${randomY}px`;
+      mole.style.display = 'block';
     }
 
-    function endGame() {
-      alert("Quiz finished! Your score: " + score + "/" + questions.length);
-      document.getElementById("nextButton").style.display = "none";
-    }
-
-    function nextQuestion() {
-      displayQuestion();
-    }
-
-    displayQuestion();
+    setInterval(moveMole, 1000);
   </script>
 </body>
 </html>
