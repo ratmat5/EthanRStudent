@@ -14,73 +14,40 @@ categories: [C1.4]
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whack-a-Mole</title>
+  <title>Interactive Globe</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 80vh;
-    }
-    .mole {
-      width: 100px;
-      height: 100px;
-      background-color: brown;
-      border-radius: 50%;
-      position: relative;
-    }
-    .mole-hole {
-      width: 120px;
-      height: 120px;
-      border: 2px solid black;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    .score {
-      margin-top: 20px;
-      font-size: 24px;
+    #map {
+      height: 500px;
     }
   </style>
 </head>
 <body>
-  <h1>Whack-a-Mole</h1>
-  <div class="container">
-    <div class="mole-hole" id="moleHole">
-      <div class="mole" id="mole"></div>
-    </div>
-  </div>
-  <div class="score" id="score">Score: 0</div>
+  <div id="map"></div>
 
-  <script>
-    let score = 0;
-    const moleHole = document.getElementById('moleHole');
-    const mole = document.getElementById('mole');
-    const scoreDisplay = document.getElementById('score');
-
-    moleHole.addEventListener('click', () => {
-      if (mole.style.display !== 'none') {
-        score++;
-        scoreDisplay.textContent = `Score: ${score}`;
-        mole.style.display = 'none';
-      }
-    });
-
-    function moveMole() {
-      const randomX = Math.random() * (window.innerWidth - 100);
-      const randomY = Math.random() * (window.innerHeight - 100);
-      mole.style.left = `${randomX}px`;
-      mole.style.top = `${randomY}px`;
-      mole.style.display = 'block';
-    }
-
-    setInterval(moveMole, 1000);
-  </script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
+// Initialize Leaflet map
+var map = L.map('map').setView([0, 0], 2); // Center the map and set zoom level
+
+// Add a base map layer (you can use different map styles)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Add markers for different regions
+var markers = [
+    {name: 'North America', coordinates: [37.0902, -95.7129]},
+    {name: 'Europe', coordinates: [51.1657, 10.4515]},
+    {name: 'Asia', coordinates: [34.0479, 100.6197]},
+    {name: 'Africa', coordinates: [8.7832, 34.5085]},
+    {name: 'South America', coordinates: [-8.7832, -55.4915]},
+    {name: 'Australia', coordinates: [-25.2744, 133.7751]}
+];
+
+markers.forEach(function(marker) {
+    L.marker(marker.coordinates).addTo(map).bindPopup(marker.name);
+});
