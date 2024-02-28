@@ -9,6 +9,8 @@ courses: { csse: {week: 0}, csp: {week: 12, categories: [4.A]}, csa: {week: 0} }
 categories: [C1.4]
 ---
 
+### Project commits
+
 ### Reflection
 - Learned how to use html
 - Learned a lot about python and the many functions it can use
