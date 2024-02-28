@@ -23,4 +23,7 @@ Use of at least one list (or other collection type) to represent a collection of
 - The data from the user is stored into the sqlite data table, where you can see all the users created and the information
 <img src="./images/sqlite-screenshot.png" alt="sqlite screenshot">
 
+![makedebug]({{site.baseurl}}/images/sqlite-screenshot.png)
+
 At least one procedure that contributed to the program's intended purpose where you have defined: the name, return type, one or more parameters.
+- Once the user creates an account and logs in, they are able to access the homepage and all the games on the website. 
