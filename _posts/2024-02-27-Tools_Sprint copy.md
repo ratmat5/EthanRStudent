@@ -21,6 +21,6 @@ Instructions for input from one of the following: the user, a device, an online 
 
 Use of at least one list (or other collection type) to represent a collection of data that is stored and used to manage program complexity and help fulfill the users purpose.
 - The data from the user is stored into the sqlite data table, where you can see all the users created and the information
-![Alt text](images/sqlite-screenshot.png)
+<img src="./images/sqlite-screenshot.png" alt="sqlite screenshot">
 
 At least one procedure that contributed to the program's intended purpose where you have defined: the name, return type, one or more parameters.
